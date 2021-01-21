@@ -1,0 +1,19 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-intermediate-reader.ss" "lang")((modname 16-2) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+; A Word is one of:
+; – '() or
+; – (cons 1String Word)
+; interpretation a Word is a list of 1Strings (letters)
+
+
+; Exercise 259. Use a local expression to organize the functions for rearranging words from Word Games, the Heart of the Problem.
+
+
+; Word -> List-of-words
+; creates all rearrangements of the letters in w
+(define (arrangements w)
+  (cond
+    [(empty? w) (list '())]
+    [else (... (first w) ...
+           ... (arrangements (rest w)) ...)]))

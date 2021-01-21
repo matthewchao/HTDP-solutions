@@ -1,0 +1,8 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname 1-12-5) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+(define BOARD-WIDTH 40) ;THE NUMBER OF CELLS WIDE
+(define BOARD-HEIGHT 30)
+(define WORM-DIAMETER 5)
+
+(define MT (empty-scene BOARD-WIDTH*WORM-DIAMETER BOARD-HEIGHT*WORM-DIAMETER))

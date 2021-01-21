@@ -1,0 +1,45 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname 1-10-4) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+(define-struct editor [pre post])
+; An Editor is a structure:
+;   (make-editor Lo1S Lo1S) 
+; An Lo1S is one of: 
+; – '()
+; – (cons 1String Lo1S)
+
+(define good
+  (cons "g" (cons "o" (cons "o" (cons "d" '())))))
+(define all
+  (cons "a" (cons "l" (cons "l" '()))))
+(define lla
+  (cons "l" (cons "l" (cons "a" '()))))
+ 
+; data example 1: 
+(make-editor all good)
+ 
+; data example 2:
+(make-editor lla good)
+
+
+; hello | world
+; should be "world" as post in its right order;
+; and o->l->l->e->h in reverse order
+; move cursor left? join o to world
+; and now l->l->e->h is it;
+
+
+; move cursor right? do w joined to o->l->l->e->h
+; and then the rest of world;
+
+
+; Editor -> Editor
+; Moves the cursor left
+(define (move-left e)
+  (cond [(empty? (editor-pre e)) e]
+        [else (make-editor (rest (editor-pre e)) (cons (first (editor-pre)) (editor-post e)))]))
+
+(define (move-right e)
+  (cond [(empty? (editor-post e)) e]
+        [else (make-editor (cons (first (editor-post e)) (editor-pre e))
+               (rest (editor-post e)))]))

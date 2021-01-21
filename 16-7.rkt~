@@ -1,0 +1,29 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-intermediate-reader.ss" "lang")((modname 16-7) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+(define-struct record [name desc buy-price sell-price])
+
+
+(define (profit r)
+  (- (record-sell-price r) (record-buy-price r)))
+
+(define (cmp-profit rec1 rec2)
+   (< (profit rec1) (profit rec2)))
+
+; List-of Records -> List-of Records
+(define (sort-records lor)
+   (sort lor cmp-profit))
+
+
+; Exercise 268. An inventory record specifies the name of an item, a description, the acquisition price, and the recommended sales price.
+
+; Define a function that sorts a list of inventory records by the difference between the two prices.
+
+; Exercise 269. Define eliminate-expensive. The function consumes a number, ua, and a list of inventory records, and it produces a list of all those structures whose sales price is below ua.
+(define (eliminate-expensive ua lor)
+  (local
+    ((define (cheap-enough? rec)
+      (<= (record-sell-price rec) ua)))
+    (filter cheap-enough? lor)))
+
+

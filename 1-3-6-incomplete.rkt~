@@ -1,0 +1,62 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname 1-3-6) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+(require 2htdp/universe)
+(require 2htdp/image)
+
+(define WIDTH-OF-WORLD 200)
+ 
+(define WHEEL-RADIUS 5)
+(define WHEEL-DISTANCE (* WHEEL-RADIUS 5))
+
+;Graphical Constants
+
+(define WHEEL
+  (circle WHEEL-RADIUS "solid" "black"))
+
+(define SPACE
+  (rectangle (* 3 WHEEL-RADIUS) WHEEL-RADIUS "outline" "transparent"))
+(define BOTH-WHEELS
+  (beside WHEEL SPACE WHEEL))
+
+BOTH-WHEELS
+
+
+(define CHASSIS
+  (rectangle (+ (image-width BOTH-WHEELS) (* 2 WHEEL-RADIUS)) (* 4 WHEEL-RADIUS) "solid" "red"))
+CHASSIS
+(define CAR
+  (overlay/offset BOTH-WHEELS 0 (- (* 2 WHEEL-RADIUS)) CHASSIS))
+CAR
+(define BACKGROUND
+  (rectangle WIDTH-OF-WORLD WIDTH-OF-WORLD "outline" "black"))
+
+; A WorldState is a Number.
+; interpretation the number of pixels between
+; the left border of the scene and the car
+
+
+; render
+; WorldState -> Image
+; places the image of the car x pixels from 
+; the left margin of the BACKGROUND image 
+(define (render x)
+  BACKGROUND)
+
+; clock-tick-handler
+; WorldState -> WorldState
+; adds 3 to x to move the car right 
+(define (tock x)
+  (+ x 3))
+
+; keystroke-handler
+; mouse-event-handler
+
+; end?
+
+; WorldState -> WorldState
+; launches the program from some initial state 
+(define (main ws)
+   (big-bang ws
+     [on-tick tock]
+     [to-draw render]))

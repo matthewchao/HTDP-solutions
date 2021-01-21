@@ -1,0 +1,14 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-intermediate-reader.ss" "lang")((modname 14-3) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+; A [List-of ITEM] is one of: 
+; – '() 
+; – (cons ITEM [List-of ITEM])
+
+
+; A List-of-numbers-again is one of: 
+; – '() 
+; – (cons Number List-of-numbers-again)
+
+(define-struct point [hori veri])
+
